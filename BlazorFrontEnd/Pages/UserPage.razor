@@ -1,0 +1,36 @@
+﻿@page "/userpage"
+@inject IUserServices UserServices
+@inject NavigationManager Navigation
+<PageTitle>Welcome to User Page</PageTitle>
+<h3>Hello user page</h3>
+
+<div class="p-2 my-3 border rounded bg-white">
+    <button class="btn btn-primary" @onclick="CreateNewUser">Add</button>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <th>ComicId</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var users in UserServices.Users)
+        {
+            <tr>
+                <td>@users.FirstName</td>
+                <td>@users.LastName</td>
+                <td>@users.Email</td>
+                <td>@users.ComicId</td>
+                <td>
+                    <i class="oi oi-pencil" @onclick="() => ShowUser(users.Id)"></i>
+                    
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
